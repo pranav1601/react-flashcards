@@ -26,7 +26,7 @@ export default class App extends Component{
   render(){
     return(
       <Provider store={store}>
-        <View>
+        <View style={styles.container}>
         <AppContainer/>
           <DeckBar
             backgroundColor="red"
@@ -38,4 +38,11 @@ export default class App extends Component{
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#dde'
+  }
+});
 

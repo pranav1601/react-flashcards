@@ -8,7 +8,7 @@ import NewCard from '../components/NewCard'
 import NewDeck from '../components/NewDeck'
 import Quiz from '../components/Quiz'
 import Reset from '../components/Reset'
-import {green,red,blue,white} from '../utils/colors'
+import {green,red,blue,white, darkGray,lightGreen} from '../utils/colors'
 import * as Icon from '@expo/vector-icons';
 
 const routeConfigs = {
@@ -20,7 +20,7 @@ const routeConfigs = {
           <Icon.Ionicons
             name={Platform.OS==='ios' ? 'ios-bookmarks' : 'md-bookmarks'}
             size={30}
-            color={blue}
+            color={tintColor}
           />
         )
       }
@@ -66,7 +66,7 @@ const tabNavigatorConfig = {
         shadowRadius: 6,
         shadowOpacity: 1,
         borderTopWidth: 1,
-        borderTopColor: red
+        borderTopColor: darkGray
       },
       labelStyle: {
         fontSize: 12,
@@ -93,7 +93,7 @@ const tabNavigatorConfig = {
           headerTitleAlign: 'center',
           headerTintColor: green,
           headerStyle: {
-            backgroundColor: blue
+            backgroundColor: lightGreen
           },
           title: 'Deck Information'
         }
@@ -104,7 +104,7 @@ const tabNavigatorConfig = {
           headerTitleAlign: 'center',
           headerTintColor: green,
           headerStyle: {
-            backgroundColor: blue
+            backgroundColor: lightGreen
           },
           headerTitleStyle: {
             justifyContent: 'center',
@@ -119,7 +119,7 @@ const tabNavigatorConfig = {
           headerTintColor: green,
           headerTitleAlign: 'center',
           headerStyle: {
-            backgroundColor: blue
+            backgroundColor: lightGreen
           }
         }
       }

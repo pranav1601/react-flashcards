@@ -23,7 +23,7 @@ export async function getDeck(id){
     return JSON.parse(results)[id]
 }
 
-export async function reset(){
+export async function resetApi(){
     await AsyncStorage.setItem(STORAGE_KEY,JSON.stringify(decks))
 }
 
@@ -52,7 +52,7 @@ export function prevDecks(){
     return AsyncStorage.getItem(STORAGE_KEY).then(results)
 }
 
-export async function addCard(title,card){
+export async function addCardApi(title,card){
     const deck=await getDeck(title)
     await AsyncStorage.mergeItem(
         STORAGE_KEY,JSON.stringify({

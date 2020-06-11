@@ -30,10 +30,13 @@ export default function deckReducer(state={},action){
         case RESET:
             return decks
         case DELETE_DECK:
-            delete state.decks[action.title]
-            return {
-                ...state
-            }
+            // console.log(action.title)
+            // delete state.decks[action.title]
+            // return {
+            //     ...state
+            // }
+            const { [action.title]: value, ...remainingDecks } = state;
+            return remainingDecks;
         default:
             return state
     }
