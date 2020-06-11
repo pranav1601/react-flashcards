@@ -1,43 +1,36 @@
-import React from 'react';
-import { AppLoading } from 'expo';
-import { Container} from 'native-base';
-import * as Font from 'expo-font';
-import { Ionicons } from '@expo/vector-icons';
-import { Home } from './src/components/Home';
-import { KeyboardAvoidingView } from 'react-native';
-import { Provider } from 'react-redux';
-import store from './src/store';
+import * as React from 'react';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 
-export default class App extends React.Component {
-  constructor( props ) {
-    super( props );
-    this.state = {
-      isReady: false,
-    };
-  }
+const instructions = Platform.select({
+  ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
+  android: `Double tap R on your keyboard to reload,\nShake or press menu button for dev menu`,
+});
 
-  async componentDidMount() {
-    await Font.loadAsync( {
-      Roboto: require( 'native-base/Fonts/Roboto.ttf' ),
-      Roboto_medium: require( 'native-base/Fonts/Roboto_medium.ttf' ),
-      ...Ionicons.font,
-    } );
-    this.setState( { isReady: true } );
-  }
-
-  render() {
-    if ( !this.state.isReady ) {
-      return <AppLoading />;
-    }
-
-    return (
-      <KeyboardAvoidingView style={{ flex: 1 }}>
-        <Provider store={store}>
-          <Container >
-            <Home />
-          </Container>
-        </Provider>
-      </KeyboardAvoidingView>
-    );
-  }
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.welcome}>Welcome to React Native!</Text>
+      <Text style={styles.instructions}>To get started, edit App.js</Text>
+      <Text style={styles.instructions}>{instructions}</Text>
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+});
