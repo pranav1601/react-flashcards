@@ -6,9 +6,6 @@ import Quiz_iOS from './Quiz_iOS';
 import {notification } from '../utils/api';
 
 export class Quiz extends Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired
-  };
   static navigationOptions = ({ navigation }) => {
     const title = navigation.getParam('title', '');
     return {

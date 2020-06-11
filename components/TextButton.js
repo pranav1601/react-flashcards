@@ -25,9 +25,3 @@ const styles = StyleSheet.create({
     fontSize: 20
   }
 });
-
-TextButton.propTypes = {
-  children: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired,
-  txtStyle: PropTypes.object
-};

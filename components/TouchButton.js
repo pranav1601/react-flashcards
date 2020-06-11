@@ -63,11 +63,3 @@ const styles = StyleSheet.create({
     color: darkGray
   }
 });
-
-TouchButton.propTypes = {
-  children: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired,
-  btnStyle: PropTypes.object,
-  txtStyle: PropTypes.object,
-  disabled: PropTypes.bool
-};

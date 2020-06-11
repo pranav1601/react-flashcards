@@ -8,10 +8,6 @@ import { connect } from 'react-redux';
 import { reset } from '../actions/index';
 
 export class Settings extends Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired,
-    resetStore: PropTypes.func.isRequired
-  };
   handleResetDecks = () => {
     const { reset, navigation } = this.props;
 

@@ -11,11 +11,6 @@ import { remove } from '../utils/api';
 import { NavigationActions } from 'react-navigation';
 
 export class DeckDetail extends Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired,
-    removeDeck: PropTypes.func.isRequired,
-    deck: PropTypes.object
-  };
   shouldComponentUpdate(nextProps) {
     return nextProps.deck !== undefined;
   }

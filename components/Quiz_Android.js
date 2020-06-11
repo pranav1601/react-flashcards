@@ -19,10 +19,6 @@ const answer = {
 };
 
 export class Quiz_Android extends Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired,
-    deck: PropTypes.object.isRequired
-  };
   state = {
     show: screen.QUESTION,
     correct: 0,
@@ -31,7 +27,6 @@ export class Quiz_Android extends Component {
     answered: Array(this.props.deck.cards.length).fill(0)
   };
   handlePageChange = evt => {
-    // console.log('evt.nativeEvent.position', evt.nativeEvent.position);
     this.setState({
       show: screen.QUESTION
     });
@@ -47,13 +42,11 @@ export class Quiz_Android extends Component {
         answered: prevState.answered.map((val, idx) => (page === idx ? 1 : val))
       }),
       () => {
-        // console.log('this.state.answered', this.state.answered);
         const { correct, incorrect, questionCount } = this.state;
 
         if (questionCount === correct + incorrect) {
           this.setState({ show: screen.RESULT });
         } else {
-          // console.log('this.state.page', this.state.page);
           this.viewPager.setPage(page + 1);
           this.setState(prevState => ({
             show: screen.QUESTION

@@ -19,10 +19,6 @@ const answer = {
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class Quiz_iOS extends Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired,
-    deck: PropTypes.object.isRequired
-  };
   state = {
     show: screen.QUESTION,
     correct: 0,

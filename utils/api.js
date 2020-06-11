@@ -28,11 +28,16 @@ export async function resetApi(){
 }
 
 export async function remove(key){
-    const results=await AsyncStorage.getItem(STORAGE_KEY)
-    const value=JSON.parse(results)
-    value[key]=undefined
-    delete data[key]
-    AsyncStorage.setItem(STORAGE_KEY,JSON.stringify(data))
+    try{
+        const results=await AsyncStorage.getItem(STORAGE_KEY)
+        const value=JSON.parse(results)
+        value[key]=undefined
+        delete data[key]
+        AsyncStorage.setItem(STORAGE_KEY,JSON.stringify(data))
+    }catch(err){
+        console.log(err)
+    }
+    
 }
 
 export async function save(title){

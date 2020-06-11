@@ -9,10 +9,6 @@ import { save } from '../utils/api';
 import { StackActions, NavigationActions } from 'react-navigation';
 
 export class AddDeck extends Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired,
-    addDeck: PropTypes.func.isRequired
-  };
   state = {
     text: ''
   };

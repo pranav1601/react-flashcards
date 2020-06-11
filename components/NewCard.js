@@ -8,11 +8,6 @@ import {addCard} from '../actions/index';
 import {addCardApi} from '../utils/api';
 
 export class NewCard extends Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired,
-    title: PropTypes.string.isRequired,
-    addCardToDeck: PropTypes.func.isRequired
-  };
   state = {
     question: '',
     answer: ''
