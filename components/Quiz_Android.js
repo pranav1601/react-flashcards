@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, ViewPagerAndroid } from 'react-native';
+import { View, Text, StyleSheet} from 'react-native';
 import TextButton from './TextButton';
 import TouchButton from './TouchButton';
 import { gray, green, red, textGray, darkGray, white } from '../utils/colors';
 import { connect } from 'react-redux';
 import { withNavigation } from 'react-navigation';
-import Viewpager from 'react-native-viewpager'
+import ViewPager from '@react-native-community/viewpager'
 
 const screen = {
   QUESTION: 'question',
