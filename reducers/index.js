@@ -1,6 +1,5 @@
 import {RECEIVE_DECKS,ADD_DECK,DELETE_DECK,ADD_CARD,RESET} from '../actions/index'
-import {decks as PREVIOUS} from '../utils/DATA'
-import { prevDecks } from '../utils/DATA'
+import {decks} from '../utils/DATA'
 
 export default function deckReducer(state={},action){
     switch(action.type){
@@ -29,7 +28,7 @@ export default function deckReducer(state={},action){
                 }
             }
         case RESET:
-            return prevDecks
+            return decks
         case DELETE_DECK:
             delete state.decks[action.title]
             return {
