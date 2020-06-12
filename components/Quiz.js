@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Platform} from 'react-native';
 import IOSPlat from './IOSPlat';
-import {setLocalNotification,clearLocalNotification } from '../utils/api';
+import {notification } from '../utils/api';
 
 export class Quiz extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -12,7 +12,7 @@ export class Quiz extends Component {
   };
   componentDidMount() {
     if(Platform.OS==='android' || Platform.OS==='ios'){
-      clearLocalNotification().then(setLocalNotification)
+      notification()
     }    
   }
   render() {
