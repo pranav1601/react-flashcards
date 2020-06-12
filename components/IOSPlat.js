@@ -25,11 +25,7 @@ class IOSPlat extends Component {
     questionCount: this.props.deck.cards.length,
     answered: Array(this.props.deck.cards.length).fill(0)
   };
-  handleScroll = () => {
-    this.setState({
-      show: screen.QUESTION
-    });
-  };
+  
   handleAnswer = (response, page) => {
     if (response === answer.CORRECT) {
       this.setState(prevState => ({ correct: prevState.correct + 1 }));
@@ -54,6 +50,11 @@ class IOSPlat extends Component {
       }
     );
   };
+  handleScroll = () => {
+    this.setState({
+      show: screen.QUESTION
+    });
+  };
   handleReset = () => {
     this.setState(prevState => ({
       show: screen.QUESTION,
@@ -63,8 +64,9 @@ class IOSPlat extends Component {
     }));
   };
   render() {
-    const { cards } = this.props.deck;
+    
     const { show } = this.state;
+    const { cards } = this.props.deck;
 
     if (cards.length === 0) {
       return (
@@ -108,7 +110,7 @@ class IOSPlat extends Component {
               btnStyle={{ backgroundColor: green, borderColor: white }}
               onPress={this.handleReset}
             >
-              Restart Quiz
+              ReAttempt Quiz
             </TouchStyle>
             <TouchStyle
               txtStyle={{ color: textGray }}
@@ -128,7 +130,7 @@ class IOSPlat extends Component {
                 this.props.navigation.navigate('Home');
               }}
             >
-              Home
+              Home h
             </TouchStyle>
           </View>
         </View>
@@ -184,7 +186,7 @@ class IOSPlat extends Component {
                 onPress={() => this.handleAnswer(answer.CORRECT, idx)}
                 disabled={this.state.answered[idx] === 1}
               >
-                Correct
+                Right!
               </TouchStyle>
               <TouchStyle
                 disabled={this.state.answered[idx] === 1}
@@ -192,7 +194,7 @@ class IOSPlat extends Component {
                 onPress={() => this.handleAnswer(answer.INCORRECT, idx)}
                 
               >
-                Incorrect
+                Wrong!
               </TouchStyle>
             </View>
           </View>

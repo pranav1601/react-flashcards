@@ -27,11 +27,7 @@ export class AndroidPlat extends Component {
     questionCount: this.props.deck.cards.length,
     answered: Array(this.props.deck.cards.length).fill(0)
   };
-  handlePageChange = evt => {
-    this.setState({
-      show: screen.QUESTION
-    });
-  };
+  
   handleAnswer = (response, page) => {
     if (response === answer.CORRECT) {
       this.setState(prevState => ({ correct: prevState.correct + 1 }));
@@ -56,6 +52,11 @@ export class AndroidPlat extends Component {
       }
     );
   };
+  handlePageChange = evt => {
+    this.setState({
+      show: screen.QUESTION
+    });
+  };
   handleReset = () => {
     this.setState(prevState => ({
       show: screen.QUESTION,
@@ -65,8 +66,8 @@ export class AndroidPlat extends Component {
     }));
   };
   render() {
-    const { cards } = this.props.deck;
     const { show } = this.state;
+    const { cards } = this.props.deck;
 
     if (cards.length === 0) {
       return (
@@ -107,7 +108,7 @@ export class AndroidPlat extends Component {
               btnStyle={{ backgroundColor: green, borderColor: white }}
               onPress={this.handleReset}
             >
-              attempt again?
+              ReAttempt again?
             </TouchStyle>
             <TouchStyle
               txtStyle={{ color: textGray }}
@@ -117,7 +118,7 @@ export class AndroidPlat extends Component {
                 this.props.navigation.goBack();
               }}
             >
-              go back
+              Back h
             </TouchStyle>
             <TouchStyle
               txtStyle={{ color: textGray }}
@@ -127,7 +128,7 @@ export class AndroidPlat extends Component {
                 this.props.navigation.navigate('Home');
               }}
             >
-              Home
+              Home h
             </TouchStyle>
           </View>
         </View>
@@ -183,14 +184,14 @@ export class AndroidPlat extends Component {
                 onPress={() => this.handleAnswer(answer.CORRECT, idx)}
                 disabled={this.state.answered[idx] === 1}
               >
-                Right!
+                Right! h
               </TouchStyle>
               <TouchStyle
                 btnStyle={{ backgroundColor: red, borderColor: white }}
                 onPress={() => this.handleAnswer(answer.INCORRECT, idx)}
                 disabled={this.state.answered[idx] === 1}
               >
-                Wrong! 
+                Wrong! h
               </TouchStyle>
             </View>
           </View>
