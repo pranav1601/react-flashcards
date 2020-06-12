@@ -68,7 +68,7 @@ export class NewCard extends Component {
             btnStyle={{ backgroundColor: green, borderColor: '#fff' }}
             onPress={this.handleSubmit}
           >
-            Submit
+            Submit h
           </TouchStyle>
         </View>
         <View style={{ height: '30%' }} />

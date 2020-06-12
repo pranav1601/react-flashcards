@@ -32,8 +32,8 @@ export async function remove(key){
         const results=await AsyncStorage.getItem(STORAGE_KEY)
         const value=JSON.parse(results)
         value[key]=undefined
-        delete data[key]
-        AsyncStorage.setItem(STORAGE_KEY,JSON.stringify(data))
+        delete value[key]
+        AsyncStorage.setItem(STORAGE_KEY,JSON.stringify(value))
     }catch(err){
         console.log(err)
     }

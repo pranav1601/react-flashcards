@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Text,View,StyleSheet,ScrollView,TouchableOpacity} from 'react-native';
 import Deck from './Deck';
 import {handleInitialData} from '../actions/index';
-import {white} from '../utils/colors';
+import {white,blue} from '../utils/colors';
 import {connect} from 'react-redux';
 
 export class Dashboard extends Component {

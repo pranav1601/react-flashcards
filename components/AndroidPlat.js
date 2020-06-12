@@ -190,7 +190,7 @@ export class AndroidPlat extends Component {
                 onPress={() => this.handleAnswer(answer.INCORRECT, idx)}
                 disabled={this.state.answered[idx] === 1}
               >
-                Wrong!
+                Wrong! 
               </TouchStyle>
             </View>
           </View>

@@ -1,10 +1,9 @@
 import React,{Component} from 'react'
-import { Platform,StyleSheet,Text,View,StatusBar} from 'react-native';
+import {StyleSheet,View,StatusBar} from 'react-native';
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
-import Dashboard from './components/Dashboard'
 import reducer from './reducers/index'
 import Constants from 'expo-constants';
 import AppContainer from './navigation/AppContainer'

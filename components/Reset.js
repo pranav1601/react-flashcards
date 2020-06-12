@@ -21,14 +21,14 @@ export class Settings extends Component {
         <View style={styles.block}>
           <View style={styles.blockContainer}>
             <Text style={styles.blockText}>
-              Reset
+              Reset h
             </Text>
             <View style={{ height: 20 }} />
             <TouchStyle
               btnStyle={{ backgroundColor: red, borderColor: white }}
               onPress={this.handleResetDecks}
             >
-              Reset
+              Reset h
             </TouchStyle>
           </View>
         </View>
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     backgroundColor: white,
   },
   blockText: {
-    fontSize: 18,
+    fontSize: 12,
     color: white
   }
 });
