@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 import Deck from './Deck';
-import TouchButton from './TouchButton';
-import TextButton from './TextButton';
-import { gray, textGray, green, white, red } from '../utils/colors';
-import { connect } from 'react-redux';
+import { textGray, green, white, red } from '../utils/colors';
+import TextStyle from './TextStyle';
+import TouchStyle from './TouchStyle';
 import { deleteDeck } from '../actions/index';
 import { remove } from '../utils/api';
-import { NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
+
 
 export class DeckDetail extends Component {
   shouldComponentUpdate(nextProps) {
     return nextProps.deck !== undefined;
   }
   handleDelete = id => {
-    const { deleteDeck, navigation } = this.props;
-
-    deleteDeck(id);
+    const {navigation, deleteDeck} = this.props;
     remove(id);
+    deleteDeck(id);
+    
 
     navigation.goBack();
   };
@@ -29,31 +28,31 @@ export class DeckDetail extends Component {
       <View style={styles.container}>
         <Deck id={deck.title} />
         <View>
-          <TouchButton
-            btnStyle={{ backgroundColor: white, borderColor: textGray }}
+          <TouchStyle
             txtStyle={{ color: textGray }}
+            btnStyle={{borderColor: textGray, backgroundColor: white  }}
             onPress={() =>
               this.props.navigation.navigate('NewCard', { title: deck.title })
             }
           >
-            Add Card
-          </TouchButton>
-          <TouchButton
-            btnStyle={{ backgroundColor: green, borderColor: white }}
+            Add a new Card?
+          </TouchStyle>
+          <TouchStyle
             txtStyle={{ color: white }}
+            btnStyle={{ borderColor: white,backgroundColor: green,  }}
             onPress={() =>
               this.props.navigation.navigate('Quiz', { title: deck.title })
             }
           >
             Start Quiz
-          </TouchButton>
+          </TouchStyle>
         </View>
-        <TextButton
+        <TextStyle
           txtStyle={{ color: red }}
           onPress={() => this.handleDelete(deck.title)}
         >
           Delete Deck
-        </TextButton>
+        </TextStyle>
       </View>
     );
   }
@@ -62,12 +61,12 @@ export class DeckDetail extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-around',
-    paddingTop: 16,
     paddingLeft: 16,
     paddingRight: 16,
+    paddingTop: 16,
     paddingBottom: 16,
-    backgroundColor: gray
+    justifyContent: 'space-around',
+    backgroundColor: white
   }
 });
 

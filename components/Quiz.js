@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Constants from 'expo-constants';
-import Quiz_Android from './Quiz_Android';
-import Quiz_iOS from './Quiz_iOS';
+import AndroidPlat from './AndroidPlat';
+import IOSPlat from './IOSPlat';
 import {notification } from '../utils/api';
 
 export class Quiz extends Component {
@@ -19,10 +18,11 @@ export class Quiz extends Component {
     const { navigation } = this.props;
     const title = navigation.getParam('title', '');
 
-    if (Constants.platform.android) {
-      return <Quiz_Android title={title} />;
+    if (Constants.platform.ios) {
+      return <IOSPlat title={title} />;
     }
-    return <Quiz_iOS title={title} />;
+    return <AndroidPlat title={title} />;
+    
   }
 }
 

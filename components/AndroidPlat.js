@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { View, Text, StyleSheet} from 'react-native';
-import TextButton from './TextButton';
-import TouchButton from './TouchButton';
-import { gray, green, red, textGray, darkGray, white } from '../utils/colors';
-import { connect } from 'react-redux';
+import { StyleSheet, View, Text,} from 'react-native';
+import TextStyle from './TextStyle';
+import TouchStyle from './TouchStyle';
+import {  textGray,gray, darkGray,green, red,  white } from '../utils/colors';
 import { withNavigation } from 'react-navigation';
 import ViewPager from '@react-native-community/viewpager'
+import { connect } from 'react-redux';
+
+const answer = {
+  CORRECT: 'correct',
+  INCORRECT: 'incorrect'
+};
 
 const screen = {
   QUESTION: 'question',
   ANSWER: 'answer',
   RESULT: 'result'
 };
-const answer = {
-  CORRECT: 'correct',
-  INCORRECT: 'incorrect'
-};
 
-export class Quiz_Android extends Component {
+
+export class AndroidPlat extends Component {
   state = {
     show: screen.QUESTION,
     correct: 0,
@@ -72,10 +73,10 @@ export class Quiz_Android extends Component {
         <View style={styles.pageStyle}>
           <View style={styles.block}>
             <Text style={[styles.count, { textAlign: 'center' }]}>
-              You cannot take a quiz because there are no cards in the deck.
+              No cards in deck!
             </Text>
             <Text style={[styles.count, { textAlign: 'center' }]}>
-              Please add some cards and try again.
+              Add questions please!
             </Text>
           </View>
         </View>
@@ -83,7 +84,7 @@ export class Quiz_Android extends Component {
     }
 
     if (this.state.show === screen.RESULT) {
-      const { correct, questionCount } = this.state;
+      const { questionCount, correct} = this.state;
       const percent = ((correct / questionCount) * 100).toFixed(0);
       const resultStyle =
         percent >= 70 ? styles.resultTextGood : styles.resultTextBad;
@@ -92,45 +93,42 @@ export class Quiz_Android extends Component {
         <View style={styles.pageStyle}>
           <View style={styles.block}>
             <Text style={[styles.count, { textAlign: 'center' }]}>
-              Quiz Complete!
+              Completed!
             </Text>
             <Text style={resultStyle}>
               {correct} / {questionCount} correct
             </Text>
           </View>
           <View style={styles.block}>
-            <Text style={[styles.count, { textAlign: 'center' }]}>
-              Percentage correct
-            </Text>
             <Text style={resultStyle}>{percent}%</Text>
           </View>
           <View>
-            <TouchButton
+            <TouchStyle
               btnStyle={{ backgroundColor: green, borderColor: white }}
               onPress={this.handleReset}
             >
-              Restart Quiz
-            </TouchButton>
-            <TouchButton
-              btnStyle={{ backgroundColor: gray, borderColor: textGray }}
+              attempt again?
+            </TouchStyle>
+            <TouchStyle
               txtStyle={{ color: textGray }}
+              btnStyle={{ backgroundColor: gray, borderColor: textGray }}
               onPress={() => {
                 this.handleReset();
                 this.props.navigation.goBack();
               }}
             >
-              Back To Deck
-            </TouchButton>
-            <TouchButton
-              btnStyle={{ backgroundColor: gray, borderColor: textGray }}
+              go back
+            </TouchStyle>
+            <TouchStyle
               txtStyle={{ color: textGray }}
+              btnStyle={{ backgroundColor: gray, borderColor: textGray }}
               onPress={() => {
                 this.handleReset();
                 this.props.navigation.navigate('Home');
               }}
             >
               Home
-            </TouchButton>
+            </TouchStyle>
           </View>
         </View>
       );
@@ -165,35 +163,35 @@ export class Quiz_Android extends Component {
               </View>
             </View>
             {show === screen.QUESTION ? (
-              <TextButton
+              <TextStyle
                 txtStyle={{ color: red }}
                 onPress={() => this.setState({ show: screen.ANSWER })}
               >
                 Show Answer
-              </TextButton>
+              </TextStyle>
             ) : (
-              <TextButton
+              <TextStyle
                 txtStyle={{ color: red }}
                 onPress={() => this.setState({ show: screen.QUESTION })}
               >
                 Show Question
-              </TextButton>
+              </TextStyle>
             )}
             <View>
-              <TouchButton
+              <TouchStyle
                 btnStyle={{ backgroundColor: green, borderColor: white }}
                 onPress={() => this.handleAnswer(answer.CORRECT, idx)}
                 disabled={this.state.answered[idx] === 1}
               >
-                Correct
-              </TouchButton>
-              <TouchButton
+                Right!
+              </TouchStyle>
+              <TouchStyle
                 btnStyle={{ backgroundColor: red, borderColor: white }}
                 onPress={() => this.handleAnswer(answer.INCORRECT, idx)}
                 disabled={this.state.answered[idx] === 1}
               >
-                Incorrect
-              </TouchButton>
+                Wrong!
+              </TouchStyle>
             </View>
           </View>
         ))}
@@ -207,13 +205,13 @@ const styles = StyleSheet.create({
     flex: 1
   },
   pageStyle: {
+    justifyContent: 'space-around',
     flex: 1,
-    paddingTop: 16,
     paddingLeft: 16,
     paddingRight: 16,
+    paddingTop: 16,
     paddingBottom: 16,
-    backgroundColor: gray,
-    justifyContent: 'space-around'
+    backgroundColor: gray
   },
   block: {
     marginBottom: 20
@@ -228,31 +226,33 @@ const styles = StyleSheet.create({
   questionContainer: {
     borderWidth: 1,
     borderColor: darkGray,
-    backgroundColor: white,
-    borderRadius: 5,
-    paddingTop: 20,
-    paddingBottom: 20,
     paddingLeft: 16,
     paddingRight: 16,
-    flexGrow: 1
+    paddingTop: 20,
+    paddingBottom: 20,
+    flexGrow: 1,
+    backgroundColor: white,
+    borderRadius: 5
+    
   },
   questionWrapper: {
     flex: 1,
     justifyContent: 'center'
   },
   questionText: {
-    textDecorationLine: 'underline',
+    
     textAlign: 'center',
+    textDecorationLine: 'underline',
     fontSize: 20
   },
   resultTextGood: {
-    color: green,
     fontSize: 46,
+    color: green,
     textAlign: 'center'
   },
   resultTextBad: {
-    color: red,
     fontSize: 46,
+    color: red,
     textAlign: 'center'
   }
 });
@@ -265,4 +265,4 @@ const mapStateToProps = (state, { title }) => {
   };
 };
 
-export default withNavigation(connect(mapStateToProps)(Quiz_Android));
+export default withNavigation(connect(mapStateToProps)(AndroidPlat));

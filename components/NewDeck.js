@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Text, View, StyleSheet, TextInput } from 'react-native';
-import TouchButton from './TouchButton';
-import { gray, green, white, textGray } from '../utils/colors';
-import { connect } from 'react-redux';
-import { addDeck } from '../actions/index';
+import { StyleSheet,Text, View,  TextInput } from 'react-native';
 import { save } from '../utils/api';
-import { StackActions, NavigationActions } from 'react-navigation';
+import { addDeck } from '../actions/index';
+import {NavigationActions , StackActions } from 'react-navigation';
+import TouchStyle from './TouchStyle';
+import { white,green,  textGray } from '../utils/colors';
+import { connect } from 'react-redux';
 
 export class AddDeck extends Component {
   state = {
@@ -41,7 +40,7 @@ export class AddDeck extends Component {
       <View style={styles.container}>
         <View style={{ height: 60 }} />
         <View style={styles.block}>
-          <Text style={styles.title}>What is the title of your new deck?</Text>
+          <Text style={styles.title}>Please add a title for the new deck</Text>
         </View>
         <View style={[styles.block]}>
           <TextInput
@@ -54,13 +53,13 @@ export class AddDeck extends Component {
             onSubmitEditing={this.handleSubmit}
           />
         </View>
-        <TouchButton
+        <TouchStyle
           btnStyle={{ backgroundColor: green, borderColor: white }}
           onPress={this.handleSubmit}
           disabled={this.state.text === ''}
         >
           Create Deck
-        </TouchButton>
+        </TouchStyle>
       </View>
     );
   }
@@ -69,28 +68,28 @@ export class AddDeck extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 16,
     paddingLeft: 16,
     paddingRight: 16,
+    paddingTop: 16,
     paddingBottom: 16,
-    backgroundColor: gray
+    backgroundColor: white
   },
   block: {
     marginBottom: 20
   },
   title: {
+    fontSize: 32,
     textAlign: 'center',
-    fontSize: 32
   },
   input: {
     borderWidth: 1,
     borderColor: textGray,
-    backgroundColor: white,
     paddingLeft: 10,
     paddingRight: 10,
-    borderRadius: 5,
+    backgroundColor: white,
     fontSize: 20,
     height: 40,
+    borderRadius: 5,
     marginBottom: 20
   }
 });

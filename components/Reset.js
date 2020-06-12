@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Text, View, StyleSheet } from 'react-native';
-import { gray, white, red, textGray, green } from '../utils/colors';
-import TouchButton from './TouchButton';
+import { gray, white, red, green } from '../utils/colors';
+import TouchStyle from './TouchStyle';
+import { reset } from '../actions/index';
 import { resetApi } from '../utils/api.js';
 import { connect } from 'react-redux';
-import { reset } from '../actions/index';
 
 export class Settings extends Component {
   handleResetDecks = () => {
@@ -22,15 +21,15 @@ export class Settings extends Component {
         <View style={styles.block}>
           <View style={styles.blockContainer}>
             <Text style={styles.blockText}>
-              This will reset the data back to the original data set.
+              Reset
             </Text>
             <View style={{ height: 20 }} />
-            <TouchButton
+            <TouchStyle
               btnStyle={{ backgroundColor: red, borderColor: white }}
               onPress={this.handleResetDecks}
             >
-              Reset Data
-            </TouchButton>
+              Reset
+            </TouchStyle>
           </View>
         </View>
       </View>
@@ -42,15 +41,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 16,
+    paddingBottom: 16,
     paddingLeft: 16,
     paddingRight: 16,
-    paddingBottom: 16,
     backgroundColor: gray
   },
   title: {
     fontSize: 40,
-    textAlign: 'center',
     marginBottom: 16,
+    textAlign: 'center',
     color: green
   },
   block: {
@@ -58,16 +57,16 @@ const styles = StyleSheet.create({
   },
   blockContainer: {
     borderWidth: 1,
-    borderColor: '#aaa',
-    backgroundColor: white,
     borderRadius: 5,
+    borderColor: '#aaa',
     paddingTop: 20,
     paddingRight: 20,
-    paddingLeft: 20
+    paddingLeft: 20,
+    backgroundColor: white,
   },
   blockText: {
     fontSize: 18,
-    color: textGray
+    color: white
   }
 });
 

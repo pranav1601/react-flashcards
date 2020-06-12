@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
-import TextButton from './TextButton';
-import TouchButton from './TouchButton';
-import { gray, green, red, textGray, darkGray, white } from '../utils/colors';
+import { StyleSheet,View, Text,  ScrollView, Dimensions } from 'react-native';
+import TouchStyle from './TouchStyle';
+import TextStyle from './TextStyle';
+import { textGray, darkGray, gray, green, red, white } from '../utils/colors';
 import { connect } from 'react-redux';
 import { withNavigation } from 'react-navigation';
 
@@ -18,7 +17,7 @@ const answer = {
 };
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-class Quiz_iOS extends Component {
+class IOSPlat extends Component {
   state = {
     show: screen.QUESTION,
     correct: 0,
@@ -42,15 +41,12 @@ class Quiz_iOS extends Component {
         answered: prevState.answered.map((val, idx) => (page === idx ? 1 : val))
       }),
       () => {
-        // console.log('this.state.answered', this.state.answered);
         const { correct, incorrect, questionCount } = this.state;
 
         if (questionCount === correct + incorrect) {
           this.setState({ show: screen.RESULT });
         } else {
-          // this.viewPager.setPage(this.state.page + 1);
           this.scrollView.scrollTo({ x: (page + 1) * SCREEN_WIDTH });
-          // console.log('(page + 1) * SCREEN_WIDTH', (page + 1) * SCREEN_WIDTH);
           this.setState(prevState => ({
             show: screen.QUESTION
           }));
@@ -86,7 +82,7 @@ class Quiz_iOS extends Component {
     }
 
     if (this.state.show === screen.RESULT) {
-      const { correct, questionCount } = this.state;
+      const {questionCount, correct,  } = this.state;
       const percent = ((correct / questionCount) * 100).toFixed(0);
       const resultStyle =
         percent >= 70 ? styles.resultTextGood : styles.resultTextBad;
@@ -108,32 +104,32 @@ class Quiz_iOS extends Component {
             <Text style={resultStyle}>{percent}%</Text>
           </View>
           <View>
-            <TouchButton
+            <TouchStyle
               btnStyle={{ backgroundColor: green, borderColor: white }}
               onPress={this.handleReset}
             >
               Restart Quiz
-            </TouchButton>
-            <TouchButton
-              btnStyle={{ backgroundColor: gray, borderColor: textGray }}
+            </TouchStyle>
+            <TouchStyle
               txtStyle={{ color: textGray }}
+              btnStyle={{ backgroundColor: gray, borderColor: textGray }}
               onPress={() => {
                 this.handleReset();
                 this.props.navigation.goBack();
               }}
             >
               Back To Deck
-            </TouchButton>
-            <TouchButton
-              btnStyle={{ backgroundColor: gray, borderColor: textGray }}
+            </TouchStyle>
+            <TouchStyle
               txtStyle={{ color: textGray }}
+              btnStyle={{ backgroundColor: gray, borderColor: textGray }}
               onPress={() => {
                 this.handleReset();
                 this.props.navigation.navigate('Home');
               }}
             >
               Home
-            </TouchButton>
+            </TouchStyle>
           </View>
         </View>
       );
@@ -141,16 +137,15 @@ class Quiz_iOS extends Component {
 
     return (
       <ScrollView
-        style={styles.container}
-        pagingEnabled={true}
-        horizontal={true}
+        style={styles.container}horizontal={true}
         onMomentumScrollBegin={this.handleScroll}
+        pagingEnabled={true}
         ref={scrollView => {
           this.scrollView = scrollView;
         }}
       >
         {cards.map((question, idx) => (
-          <View style={styles.pageStyle} key={idx}>
+          <View key={idx} style={styles.pageStyle} >
             <View style={styles.block}>
               <Text style={styles.count}>
                 {idx + 1} / {cards.length}
@@ -169,35 +164,36 @@ class Quiz_iOS extends Component {
               </View>
             </View>
             {show === screen.QUESTION ? (
-              <TextButton
+              <TextStyle
                 txtStyle={{ color: red }}
                 onPress={() => this.setState({ show: screen.ANSWER })}
               >
                 Show Answer
-              </TextButton>
+              </TextStyle>
             ) : (
-              <TextButton
+              <TextStyle
                 txtStyle={{ color: red }}
                 onPress={() => this.setState({ show: screen.QUESTION })}
               >
                 Show Question
-              </TextButton>
+              </TextStyle>
             )}
             <View>
-              <TouchButton
+              <TouchStyle
                 btnStyle={{ backgroundColor: green, borderColor: white }}
                 onPress={() => this.handleAnswer(answer.CORRECT, idx)}
                 disabled={this.state.answered[idx] === 1}
               >
                 Correct
-              </TouchButton>
-              <TouchButton
+              </TouchStyle>
+              <TouchStyle
+                disabled={this.state.answered[idx] === 1}
                 btnStyle={{ backgroundColor: red, borderColor: white }}
                 onPress={() => this.handleAnswer(answer.INCORRECT, idx)}
-                disabled={this.state.answered[idx] === 1}
+                
               >
                 Incorrect
-              </TouchButton>
+              </TouchStyle>
             </View>
           </View>
         ))}
@@ -210,18 +206,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  pageStyle: {
-    flex: 1,
-    paddingTop: 16,
-    paddingLeft: 16,
-    paddingRight: 16,
-    paddingBottom: 16,
-    backgroundColor: gray,
-    justifyContent: 'space-around',
-    width: SCREEN_WIDTH
-  },
   block: {
     marginBottom: 20
+  },
+  pageStyle: {
+    flex: 1,
+    justifyContent: 'space-around',
+    paddingTop: 16,
+    paddingBottom: 16,
+    paddingLeft: 16,
+    paddingRight: 16,
+    backgroundColor: white,
+    width: SCREEN_WIDTH
   },
   count: {
     fontSize: 24
@@ -232,14 +228,25 @@ const styles = StyleSheet.create({
   },
   questionContainer: {
     borderWidth: 1,
+    paddingBottom: 20,
+    paddingLeft: 16,
+    paddingTop: 20,
+    paddingRight: 16,
     borderColor: darkGray,
     backgroundColor: white,
     borderRadius: 5,
-    paddingTop: 20,
-    paddingBottom: 20,
-    paddingLeft: 16,
-    paddingRight: 16,
     flexGrow: 1
+  },
+  resultTextGood: {
+    fontSize: 46,
+    color: green,
+    textAlign: 'center'
+  },
+  
+  resultTextBad: {
+    fontSize: 46,
+    color: red,
+    textAlign: 'center'
   },
   questionWrapper: {
     flex: 1,
@@ -250,16 +257,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20
   },
-  resultTextGood: {
-    color: green,
-    fontSize: 46,
-    textAlign: 'center'
-  },
-  resultTextBad: {
-    color: red,
-    fontSize: 46,
-    textAlign: 'center'
-  }
 });
 
 const mapStateToProps = (state, { title }) => {
@@ -270,4 +267,4 @@ const mapStateToProps = (state, { title }) => {
   };
 };
 
-export default withNavigation(connect(mapStateToProps)(Quiz_iOS));
+export default withNavigation(connect(mapStateToProps)(IOSPlat));

@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Text, View, TextInput, StyleSheet } from 'react-native';
-import TouchButton from './TouchButton';
-import { gray, green } from '../utils/colors';
-import { connect } from 'react-redux';
+import TouchStyle from './TouchStyle';
 import {addCard} from '../actions/index';
 import {addCardApi} from '../utils/api';
+import { gray, green } from '../utils/colors';
+import { connect } from 'react-redux';
+
 
 export class NewCard extends Component {
   state = {
     question: '',
     answer: ''
   };
-  handleQuestionChange = question => {
-    this.setState({ question });
-  };
   handleAnswerChange = answer => {
     this.setState({ answer });
+  };
+  handleQuestionChange = question => {
+    this.setState({ question });
   };
   handleSubmit = () => {
     const { addCard, title, navigation } = this.props;
@@ -35,41 +35,41 @@ export class NewCard extends Component {
     return (
       <View style={styles.container}>
         <View>
-          <View style={styles.block}>
-            <Text style={styles.title}>Add a question</Text>
+          <View style={styles.cover}>
+            <Text style={styles.title}>Add a new question?</Text>
           </View>
           <View style={[styles.block]}>
             <TextInput
               style={styles.input}
               value={this.state.question}
-              onChangeText={this.handleQuestionChange}
+              returnKeyType="next"
               placeholder="Question"
               autoFocus={true}
-              returnKeyType="next"
+              onChangeText={this.handleQuestionChange}
               onSubmitEditing={() => this.answerTextInput.focus()}
               blurOnSubmit={false}
             />
           </View>
-          <View style={[styles.block]}>
+          <View style={[styles.cover]}>
             <TextInput
               style={styles.input}
-              value={this.state.answer}
-              onChangeText={this.handleAnswerChange}
-              placeholder="Answer"
               ref={input => {
                 this.answerTextInput = input;
               }}
+              placeholder="Answer"
               returnKeyType="done"
+              value={this.state.answer}
+              onChangeText={this.handleAnswerChange}
               onSubmitEditing={this.handleSubmit}
             />
           </View>
-          <TouchButton
+          <TouchStyle
+            disabled={this.state.question === '' || this.state.answer === ''}
             btnStyle={{ backgroundColor: green, borderColor: '#fff' }}
             onPress={this.handleSubmit}
-            disabled={this.state.question === '' || this.state.answer === ''}
           >
             Submit
-          </TouchButton>
+          </TouchStyle>
         </View>
         <View style={{ height: '30%' }} />
       </View>
@@ -81,28 +81,29 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 16,
+    paddingBottom: 16,
     paddingLeft: 16,
     paddingRight: 16,
-    paddingBottom: 16,
     backgroundColor: gray,
     justifyContent: 'space-around'
-  },
-  block: {
-    marginBottom: 20
   },
   title: {
     textAlign: 'center',
     fontSize: 32
   },
+  cover: {
+    marginBottom: 20
+  },
   input: {
+    borderRadius: 5,
     borderWidth: 1,
     borderColor: 'gray',
-    backgroundColor: '#fff',
+    fontSize: 20,
+    height: 40,
     paddingLeft: 10,
     paddingRight: 10,
-    borderRadius: 5,
-    fontSize: 20,
-    height: 40
+    backgroundColor: '#fff'
+    
   }
 });
 
