@@ -5,7 +5,7 @@ export default function TextButton({ children, onPress, txtStyle = {} }) {
   return (
     <View style={styles.buttonContainer}>
       <TouchableOpacity onPress={onPress}>
-        <Text style={[styles.buttonText, txtStyle]}>{children}</Text>
+        <Text style={[styles.buttonText, txtStyle]}>{children} </Text>
       </TouchableOpacity>
     </View>
   );

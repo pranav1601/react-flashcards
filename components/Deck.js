@@ -15,7 +15,7 @@ const Deck = (props) => {
         <Text style={styles.deckText}>{deck.title}</Text>
       </View>
       <View>
-        <Text style={styles.cardText}>{deck.cards.length} Flashcards</Text>
+        <Text style={styles.cardText}>{deck.cards.length} Flashcards </Text>
       </View>
     </View>
   );

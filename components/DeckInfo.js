@@ -35,7 +35,7 @@ export class DeckDetail extends Component {
               this.props.navigation.navigate('NewCard', { title: deck.title })
             }
           >
-            Add h
+            Add Question
           </TouchStyle>
           <TouchStyle
             txtStyle={{ color: white }}
@@ -44,7 +44,7 @@ export class DeckDetail extends Component {
               this.props.navigation.navigate('Quiz', { title: deck.title })
             }
           >
-            Start Q
+            Start Quiz
           </TouchStyle>
         </View>
         <TextStyle

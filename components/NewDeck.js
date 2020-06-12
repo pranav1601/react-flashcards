@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet,Text, View,  TextInput } from 'react-native';
+import { StyleSheet,Text, View,TextInput} from 'react-native';
 import { save } from '../utils/api';
 import { addDeck } from '../actions/index';
 import {NavigationActions , StackActions } from 'react-navigation';
 import TouchStyle from './TouchStyle';
 import { white,green,  textGray } from '../utils/colors';
 import { connect } from 'react-redux';
+import { Container, Header, Content, Item, Input, Left, Body, Title, Right, Button, Card, Root, Toast } from 'native-base'
 
 export class AddDeck extends Component {
   state = {
@@ -44,6 +45,7 @@ export class AddDeck extends Component {
         </View>
         <View style={[styles.block]}>
           <TextInput
+          
             style={styles.input}
             value={this.state.text}
             onChangeText={this.handleChange}

@@ -25,7 +25,7 @@ export default function TouchButton({
             disabledButtonText
           ]}
         >
-          {children}
+          {children} 
         </Text>
       </TouchableOpacity>
     </View>

@@ -120,7 +120,7 @@ class IOSPlat extends Component {
                 this.props.navigation.goBack();
               }}
             >
-              Back To Deck
+              Back ?
             </TouchStyle>
             <TouchStyle
               txtStyle={{ color: textGray }}
@@ -130,7 +130,7 @@ class IOSPlat extends Component {
                 this.props.navigation.navigate('Home');
               }}
             >
-              Home h
+              Home !
             </TouchStyle>
           </View>
         </View>
@@ -186,7 +186,7 @@ class IOSPlat extends Component {
                 onPress={() => this.handleAnswer(answer.CORRECT, idx)}
                 disabled={this.state.answered[idx] === 1}
               >
-                Right!
+                Right !
               </TouchStyle>
               <TouchStyle
                 disabled={this.state.answered[idx] === 1}
@@ -194,7 +194,7 @@ class IOSPlat extends Component {
                 onPress={() => this.handleAnswer(answer.INCORRECT, idx)}
                 
               >
-                Wrong!
+                Wrong !
               </TouchStyle>
             </View>
           </View>

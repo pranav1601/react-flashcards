@@ -21,14 +21,14 @@ export class Settings extends Component {
         <View style={styles.block}>
           <View style={styles.blockContainer}>
             <Text style={styles.blockText}>
-              Reset h
+              Reset Quiz
             </Text>
             <View style={{ height: 20 }} />
             <TouchStyle
               btnStyle={{ backgroundColor: red, borderColor: white }}
               onPress={this.handleResetDecks}
             >
-              Reset h
+              Reset Quiz
             </TouchStyle>
           </View>
         </View>

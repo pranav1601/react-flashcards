@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet,TextInput } from 'react-native';
 import TouchStyle from './TouchStyle';
 import {addCard} from '../actions/index';
 import {addCardApi} from '../utils/api';
 import { gray, green } from '../utils/colors';
 import { connect } from 'react-redux';
+import { Container, Header, Content, Item, Input, Left, Body, Title, Right, Button, Card, Root, Toast } from 'native-base'
 
 
 export class NewCard extends Component {
@@ -68,7 +69,7 @@ export class NewCard extends Component {
             btnStyle={{ backgroundColor: green, borderColor: '#fff' }}
             onPress={this.handleSubmit}
           >
-            Submit h
+            Submit 
           </TouchStyle>
         </View>
         <View style={{ height: '30%' }} />

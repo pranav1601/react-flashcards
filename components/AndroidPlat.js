@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text,} from 'react-native';
+import { StyleSheet, View, Text} from 'react-native';
 import TextStyle from './TextStyle';
 import TouchStyle from './TouchStyle';
 import {  textGray,gray, darkGray,green, red,  white } from '../utils/colors';
@@ -74,10 +74,10 @@ export class AndroidPlat extends Component {
         <View style={styles.pageStyle}>
           <View style={styles.block}>
             <Text style={[styles.count, { textAlign: 'center' }]}>
-              No cards in deck!
+              No cards in deck! 
             </Text>
             <Text style={[styles.count, { textAlign: 'center' }]}>
-              Add questions please!
+              Add questions please! 
             </Text>
           </View>
         </View>
@@ -94,7 +94,7 @@ export class AndroidPlat extends Component {
         <View style={styles.pageStyle}>
           <View style={styles.block}>
             <Text style={[styles.count, { textAlign: 'center' }]}>
-              Completed!
+              Completed! 
             </Text>
             <Text style={resultStyle}>
               {correct} / {questionCount} correct
@@ -108,7 +108,7 @@ export class AndroidPlat extends Component {
               btnStyle={{ backgroundColor: green, borderColor: white }}
               onPress={this.handleReset}
             >
-              ReAttempt again?
+              ReAttempt again? 
             </TouchStyle>
             <TouchStyle
               txtStyle={{ color: textGray }}
@@ -118,7 +118,7 @@ export class AndroidPlat extends Component {
                 this.props.navigation.goBack();
               }}
             >
-              Back h
+              Back 
             </TouchStyle>
             <TouchStyle
               txtStyle={{ color: textGray }}
@@ -128,7 +128,7 @@ export class AndroidPlat extends Component {
                 this.props.navigation.navigate('Home');
               }}
             >
-              Home h
+              Home 
             </TouchStyle>
           </View>
         </View>
@@ -184,14 +184,14 @@ export class AndroidPlat extends Component {
                 onPress={() => this.handleAnswer(answer.CORRECT, idx)}
                 disabled={this.state.answered[idx] === 1}
               >
-                Right! h
+                Right! 
               </TouchStyle>
               <TouchStyle
                 btnStyle={{ backgroundColor: red, borderColor: white }}
                 onPress={() => this.handleAnswer(answer.INCORRECT, idx)}
                 disabled={this.state.answered[idx] === 1}
               >
-                Wrong! h
+                Wrong! 
               </TouchStyle>
             </View>
           </View>
