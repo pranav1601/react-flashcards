@@ -12,14 +12,14 @@ export function getData(){
 }
 
 export async function getDecks(){
-    const results=await AsyncStorage.getItem(STORAGE_KEY)
+    const results = await AsyncStorage.getItem(STORAGE_KEY)
     if(results===null){
         AsyncStorage.setItem(STORAGE_KEY,JSON.stringify(decks))
     }
-    return results===null?decks:JSON.parse(results)
+    return results === null?decks:JSON.parse(results)
 }
 export async function getDeck(id){
-    const results=await AsyncStorage.getItem(STORAGE_KEY)
+    const results = await AsyncStorage.getItem(STORAGE_KEY)
     return JSON.parse(results)[id]
 }
 
@@ -29,9 +29,9 @@ export async function resetApi(){
 
 export async function remove(key){
     try{
-        const results=await AsyncStorage.getItem(STORAGE_KEY)
-        const value=JSON.parse(results)
-        value[key]=undefined
+        const results = await AsyncStorage.getItem(STORAGE_KEY)
+        const value = JSON.parse(results)
+        value[key] = undefined
         delete value[key]
         AsyncStorage.setItem(STORAGE_KEY,JSON.stringify(value))
     }catch(err){
